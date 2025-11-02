@@ -3,17 +3,18 @@ from fpdf import FPDF, XPos, YPos
 # PDF クラス定義（日本語対応フォント設定）
 class PDF(FPDF):
     def header(self):
-        self.set_font("DejaVu", "B", 16)
+        self.set_font("NotoSansCJK", "B", 16)
         self.cell(0, 10, "商談プロセス総括報告書", new_x=XPos.LMARGIN, new_y=YPos.NEXT, align="C")
         self.ln(5)
 
 # PDF作成
 pdf = PDF()
-pdf.add_font("DejaVu", "", "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf")
-pdf.add_font("DejaVu", "B", "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf")
+# 日本語フォント（Noto Sans CJK JP）を追加
+pdf.add_font("NotoSansCJK", "", "fonts/NotoSansCJKjp-Regular.otf")
+pdf.add_font("NotoSansCJK", "B", "fonts/NotoSansCJKjp-Bold.otf")
 pdf.add_page()
 pdf.set_auto_page_break(auto=True, margin=15)
-pdf.set_font("DejaVu", size=12)
+pdf.set_font("NotoSansCJK", size=12)
 
 # コンテンツ
 content = """
